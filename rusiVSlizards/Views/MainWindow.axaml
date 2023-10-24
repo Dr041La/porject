@@ -1,0 +1,89 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:rusiVSlizards.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="rusiVSlizards.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="rusiVSlizards">
+    
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <TabControl Background="Bisque" x:Name="tabControl"  TabStripPlacement="Top">
+        <TabItem Header="Операции" FontSize="15" x:Name="tab1">
+            <Grid Background="Aquamarine" ColumnDefinitions="*, Auto">
+                <Grid Grid.Column="0" Background="Aqua">
+                    <DataGrid Background="Azure"></DataGrid>
+                </Grid>
+                <Grid Grid.Column="1" Background="Brown" RowDefinitions="Auto, *" Width="95">
+                    <StackPanel Grid.Row="0" Height="110" Background="Aquamarine" Orientation="Vertical">
+                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
+                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Добавить</TextBlock>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
+                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Удалить</TextBlock>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
+                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Редакт.</TextBlock>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Клиенты" FontSize="15" x:Name="tab2">
+            <Grid Background="Aquamarine" RowDefinitions="Auto, *">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Background="Aqua">
+                    <StackPanel Grid.Column="0" Height="40" Background="Brown" Orientation="Horizontal">
+                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Добавить</TextBlock>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Удалить</TextBlock>
+                        </Button>
+                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Редакт.</TextBlock>
+                        </Button>
+                    </StackPanel>
+                    <Grid Grid.Column="1" Background="Yellow" ColumnDefinitions="*, *, *">
+                        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 4, 0, 0" Grid.Column="0">Должники</TextBlock>
+                        <ToggleButton VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 0, 0, 4" Grid.Column="0"></ToggleButton>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1" Background="Brown">
+                    <DataGrid Background="Azure"></DataGrid>
+                </Grid>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Баланс" FontSize="15" x:Name="tab3">
+            <TabControl Background="Chocolate" TabStripPlacement="Right">
+                <TabItem Header="Баланс">
+                    <Grid Background="Coral" ColumnDefinitions="*, *">
+                        <TextBlock Grid.Column="0" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Right">Баланс:</TextBlock>
+                        <TextBlock Grid.Column="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10, 0,0, 0" >5465464</TextBlock>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Отчет">
+                   <lvc:CartesianChart Background="Black" Series="{Binding Series}"></lvc:CartesianChart>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="Налоги" FontSize="15" x:Name="tab4">
+            <Grid Background="LightYellow" RowDefinitions="*, Auto">
+                <ListBox Grid.Row="0" Background="Blue"></ListBox>
+                <StackPanel Grid.Row="1" Height="60" Background="Cornsilk" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" FontSize="30">Сумма:</TextBlock>
+                    <TextBlock VerticalAlignment="Center" FontSize="30" Margin="15, 0, 0, 0">454353</TextBlock>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Контроль" FontSize="15" x:Name="tab5"></TabItem>
+    </TabControl>
+
+</Window>
