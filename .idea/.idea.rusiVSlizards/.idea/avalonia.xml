@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="rusiVSlizards/App.axaml" value="rusiVSlizards/rusiVSlizards.csproj" />
+        <entry key="rusiVSlizards/Views/AddClientWindow.axaml" value="rusiVSlizards/rusiVSlizards.csproj" />
         <entry key="rusiVSlizards/Views/MainWindow.axaml" value="rusiVSlizards/rusiVSlizards.csproj" />
         <entry key="rusiVSlizards/awregf.axaml" value="rusiVSlizards/rusiVSlizards.csproj" />
       </map>

@@ -23,6 +23,8 @@
 /home/KHPK.RU/student/.nuget/packages/avalonia.win32/11.0.2/lib/net6.0/Avalonia.Win32.dll
 /home/KHPK.RU/student/.nuget/packages/avalonia.x11/11.0.2/lib/net6.0/Avalonia.X11.dll
 /home/KHPK.RU/student/.nuget/packages/portable.bouncycastle/1.9.0/lib/netstandard2.0/BouncyCastle.Crypto.dll
+/home/KHPK.RU/student/.nuget/packages/colortextblock.avalonia/11.0.0-d1/lib/net6.0/ColorTextBlock.Avalonia.dll
+/home/KHPK.RU/student/.nuget/packages/dialoghost.avalonia/0.7.5/lib/netstandard2.0/DialogHost.Avalonia.dll
 /home/KHPK.RU/student/.nuget/packages/dynamicdata/7.9.5/lib/net6.0/DynamicData.dll
 /home/KHPK.RU/student/.nuget/packages/google.protobuf/3.21.9/lib/net5.0/Google.Protobuf.dll
 /home/KHPK.RU/student/.nuget/packages/harfbuzzsharp/7.3.0/lib/net6.0/HarfBuzzSharp.dll
@@ -32,6 +34,7 @@
 /home/KHPK.RU/student/.nuget/packages/livechartscore/2.0.0-rc1.2/lib/net6.0/LiveChartsCore.dll
 /home/KHPK.RU/student/.nuget/packages/livechartscore.skiasharpview.avalonia/2.0.0-rc1.2/lib/net6.0/LiveChartsCore.SkiaSharpView.Avalonia.dll
 /home/KHPK.RU/student/.nuget/packages/livechartscore.skiasharpview/2.0.0-rc1.2/lib/net6.0/LiveChartsCore.SkiaSharpView.dll
+/home/KHPK.RU/student/.nuget/packages/markdown.avalonia.tight/11.0.0-d1/lib/net6.0/Markdown.Avalonia.dll
 /home/KHPK.RU/student/.nuget/packages/microcom.runtime/0.11.0/lib/net5.0/MicroCom.Runtime.dll
 /home/KHPK.RU/student/.nuget/packages/microsoft.codeanalysis.csharp/3.8.0/lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.dll
 /home/KHPK.RU/student/.nuget/packages/microsoft.codeanalysis.csharp.scripting/3.8.0/lib/netcoreapp3.1/Microsoft.CodeAnalysis.CSharp.Scripting.dll
@@ -43,6 +46,7 @@
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/Microsoft.Win32.Primitives.dll
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/Microsoft.Win32.Registry.dll
 /home/KHPK.RU/student/.nuget/packages/microsoft.win32.systemevents/6.0.0/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+/home/KHPK.RU/student/.nuget/packages/messagebox.avalonia/3.0.0/lib/netstandard2.0/MsBox.Avalonia.dll
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/mscorlib.dll
 /home/KHPK.RU/student/.nuget/packages/mysql.data/8.1.0/lib/net7.0/MySql.Data.dll
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/netstandard.dll
@@ -133,7 +137,7 @@
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/System.Numerics.dll
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/System.Numerics.Vectors.dll
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/System.ObjectModel.dll
-/home/KHPK.RU/student/.nuget/packages/system.reactive/5.0.0/lib/net5.0/System.Reactive.dll
+/home/KHPK.RU/student/.nuget/packages/system.reactive/6.0.0/lib/net6.0/System.Reactive.dll
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/System.Reflection.DispatchProxy.dll
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/System.Reflection.dll
 /usr/lib64/dotnet/packs/Microsoft.NETCore.App.Ref/7.0.9/ref/net7.0/System.Reflection.Emit.dll

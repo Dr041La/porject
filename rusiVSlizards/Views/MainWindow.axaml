@@ -11,8 +11,6 @@
         Title="rusiVSlizards">
     
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
@@ -41,15 +39,19 @@
             <Grid Background="Aquamarine" RowDefinitions="Auto, *">
                 <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Background="Aqua">
                     <StackPanel Grid.Column="0" Height="40" Background="Brown" Orientation="Horizontal">
-                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+                        <Button x:Name="addClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
                             <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Добавить</TextBlock>
                         </Button>
-                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+                        <Button x:Name="deleteClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
                             <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Удалить</TextBlock>
                         </Button>
-                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+                        <Button x:Name="redactClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
                             <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Редакт.</TextBlock>
                         </Button>
+                        <Grid ColumnDefinitions="Auto, *">
+                            <TextBox x:Name="clientFilterText" Grid.Column="0" Background="Bisque"  HorizontalAlignment="Stretch" MinHeight="20" Height="28" VerticalContentAlignment="Center" Width="150" Margin="15, 0, 0, 0" Watermark="Поиск"></TextBox>
+                            <Button x:Name="clearClientsFilterButton" Grid.Column="1" Background="Bisque" Margin="-3, 0, 0, 0" Height="28">X</Button>
+                        </Grid>
                     </StackPanel>
                     <Grid Grid.Column="1" Background="Yellow" ColumnDefinitions="*, *, *">
                         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 4, 0, 0" Grid.Column="0">Должники</TextBlock>
@@ -57,7 +59,7 @@
                     </Grid>
                 </Grid>
                 <Grid Grid.Row="1" Background="Brown">
-                    <DataGrid Background="Azure"></DataGrid>
+                    <DataGrid x:Name="clientsDataGrid" Background="Azure"></DataGrid>
                 </Grid>
             </Grid>
         </TabItem>

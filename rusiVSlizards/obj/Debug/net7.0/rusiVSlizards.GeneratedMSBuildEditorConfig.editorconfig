@@ -18,5 +18,8 @@ build_property.ProjectDir = /home/KHPK.RU/student/RiderProjects/rusiVSlizards/ru
 [/home/KHPK.RU/student/RiderProjects/rusiVSlizards/rusiVSlizards/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[/home/KHPK.RU/student/RiderProjects/rusiVSlizards/rusiVSlizards/Views/AddClientWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [/home/KHPK.RU/student/RiderProjects/rusiVSlizards/rusiVSlizards/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
