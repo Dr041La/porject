@@ -13,6 +13,9 @@ public class MainWindowViewModel : ViewModelBase
 {
     public static ObservableCollection<Client> Clients { get; set; } = new ObservableCollection<Client>();
     public static DataGridCollectionView ClientsView { get; set; } = new DataGridCollectionView(Clients);
+
+    public static ObservableCollection<Account> Accounts { get; set; } = new ObservableCollection<Account>();
+    public static DataGridCollectionView AccountsView { get; set; } = new DataGridCollectionView(Accounts);
     public ISeries[] Series { get; set; } = new ISeries[]
     {
         new LineSeries<double>
@@ -29,5 +32,13 @@ public class MainWindowViewModel : ViewModelBase
         Clients.Clear();
         Clients.AddRange(Db.GetAllClients());
         ClientsView.Refresh();
+        RefreshAccounts();
+    }
+
+    public static void RefreshAccounts()
+    {
+        Accounts.Clear();
+        Accounts.AddRange(Db.GetAllAccounts());
+        AccountsView.Refresh();
     }
 }

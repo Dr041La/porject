@@ -17,7 +17,7 @@
                                                 <Grid ColumnDefinitions="*, Auto">
                                                         <TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Имя</TextBlock>
                                                                 <Border Grid.Column="1" Width="200" CornerRadius="0, 25, 25, 0" Background="#C6BDAC">
-                                                                        <TextBox BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
+                                                                        <TextBox x:Name="nameText" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
                                                                                 <TextBox.Styles>
                                                                                         <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
                                                                                                 <Setter Property="Background" Value="Transparent"></Setter>
@@ -35,7 +35,7 @@
                                                 <Grid ColumnDefinitions="*, Auto">
                                                         <TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Пароль</TextBlock>
                                                                 <Border Grid.Column="1" Width="200" CornerRadius="0, 25, 25, 0" Background="#C6BDAC">
-                                                                        <TextBox BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
+                                                                        <TextBox x:Name="passText" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
                                                                                 <TextBox.Styles>
                                                                                         <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
                                                                                                 <Setter Property="Background" Value="Transparent"></Setter>
@@ -53,8 +53,7 @@
                                                 <Grid ColumnDefinitions="*, Auto">
                                                         <TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Роль</TextBlock>
                                                                 <Border Grid.Column="1" Width="200" CornerRadius="0, 25, 25, 0" Background="#C6BDAC">
-                                                                        <ComboBox BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
-                                                                                <ComboBoxItem Content="sfasdf"></ComboBoxItem>
+                                                                        <ComboBox x:Name="rolesBox" HorizontalAlignment="Stretch" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
                                                                                 <ComboBox.Styles>
                                                                                         <Style Selector="ComboBox:focus /template/ Border#Background">
                                                                                                 <Setter Property="Background" Value="Transparent"></Setter>
@@ -68,6 +67,14 @@
                                                                 </Border>
                                                 </Grid>
                                         </Border>
+									<Grid Grid.Row="3" ColumnDefinitions="*, *">
+										<Button x:Name="addButton" Grid.Column="0" HorizontalAlignment="Center" Background="#D3D2C9" CornerRadius="35" Width="150" Height="50">
+											<TextBlock x:Name="addText" Foreground="#56575D" FontWeight="ExtraBold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Добавить</TextBlock>
+										</Button>
+										<Button x:Name="cancelButton" Grid.Column="1" HorizontalAlignment="Center" Background="#D3D2C9" CornerRadius="35" Width="150" Height="50">
+											<TextBlock x:Name="cancelText" Foreground="#56575D" FontWeight="ExtraBold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Отмена</TextBlock>
+										</Button>
+									</Grid>
                                 </Grid>
                         </Border>
                 </Grid>

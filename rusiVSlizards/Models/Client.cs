@@ -19,6 +19,11 @@ public class Client
     
     public Client()
     {}
+
+    public override string ToString()
+    {
+        return name;
+    }
 }
 
 public enum UserRole

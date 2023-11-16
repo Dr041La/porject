@@ -4,7 +4,7 @@ namespace rusiVSlizards.ViewModels;
 
 public class Tax
 {
-    public int id { get; set; }
+    public int id;
     public int userId { get; set; }
     public string taxType { get; set; }
     public int taxAmount { get; set; }

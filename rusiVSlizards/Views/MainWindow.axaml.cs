@@ -16,6 +16,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         
         SetClientsGrid();
+        SetAccountsGrid();
     }
     
     #region Clients
@@ -108,18 +109,16 @@ public partial class MainWindow : Window
     public bool ClientsFilter(object o)
     {
         if (clientFilterText.Text != null && clientFilterText.Text != string.Empty)
-        {
-            /*
+        {           
             Client client = (Client)o;
-            if (client.firstName.Contains(clientFilterText.Text) || client.surName.Contains(clientFilterText.Text) || client.phone.ToString().Contains(clientFilterText.Text) || client.birthday.ToString().Contains(clientFilterText.Text) || client.lastLanguage.Contains(clientFilterText.Text) || client.languageNeeds.Contains(clientFilterText.Text) || client.languageLevel.Contains(clientFilterText.Text))
+            if (client.name.Contains(clientFilterText.Text) || client.password.Contains(clientFilterText.Text) || client.userRole.ToString().Contains(clientFilterText.Text))
             {
                 return true;
             }
             else
             {
                 return false;
-            }
-            */
+            }          
         }
         return true;
     }
@@ -132,5 +131,76 @@ public partial class MainWindow : Window
         }
     }
     #endregion
-    
+
+    #region Accounts
+
+    private Account selectedAccount;
+
+    public void SetAccountsGrid()
+    {
+        clearAccFilterButton.Click += delegate { accFilterText.Clear(); };
+
+        accDataGrid.SelectionChanged += AccDataGrid_OnSelectionChanged;
+        accDataGrid.AutoGeneratingColumn += SetAccGridCollumnName;
+
+        MainWindowViewModel.RefreshAccounts();
+
+        accFilterText.TextChanged += delegate { OnAccFilterChanged(); };
+
+        MainWindowViewModel.AccountsView = new DataGridCollectionView(MainWindowViewModel.Accounts);
+        MainWindowViewModel.AccountsView.Filter = AccFilter;
+        MainWindowViewModel.AccountsView.Refresh();
+    }
+
+
+    public void RefreshAcc()
+    {
+        MainWindowViewModel.RefreshAccounts();
+    }
+
+
+    private void OnAccFilterChanged()
+    {
+        MainWindowViewModel.AccountsView.Refresh();
+    }
+
+    public void SetAccGridCollumnName(object? sender, DataGridAutoGeneratingColumnEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case "User":
+                e.Column.Header = "Пользователь";
+                break;
+            case "balance":
+                e.Column.Header = "Баланс";
+                break;
+        }
+    }
+
+    public bool AccFilter(object o)
+    {
+        if (accFilterText.Text != null && accFilterText.Text != string.Empty)
+        {
+            Account acc = (Account)o;
+            if (acc.User.Contains(accFilterText.Text) || acc.balance.ToString().Contains(accFilterText.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void AccDataGrid_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.AddedItems.Count > 0)
+        {
+            selectedAccount = e.AddedItems[0] as Account;
+        }
+    }
+    #endregion
+
 }

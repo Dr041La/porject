@@ -13,13 +13,13 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = rusiVSlizards
-build_property.ProjectDir = /home/KHPK.RU/student/RiderProjects/rusiVSlizards/rusiVSlizards/
+build_property.ProjectDir = C:\Users\iluha\OneDrive\Рабочий стол\rusiVSlizards\rusiVSlizards\
 
-[/home/KHPK.RU/student/RiderProjects/rusiVSlizards/rusiVSlizards/App.axaml]
+[C:/Users/iluha/OneDrive/Рабочий стол/rusiVSlizards/rusiVSlizards/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/KHPK.RU/student/RiderProjects/rusiVSlizards/rusiVSlizards/Views/AddClientWindow.axaml]
+[C:/Users/iluha/OneDrive/Рабочий стол/rusiVSlizards/rusiVSlizards/Views/AddClientWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[/home/KHPK.RU/student/RiderProjects/rusiVSlizards/rusiVSlizards/Views/MainWindow.axaml]
+[C:/Users/iluha/OneDrive/Рабочий стол/rusiVSlizards/rusiVSlizards/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -15,66 +15,81 @@
     </Design.DataContext>
 
     <TabControl Background="Bisque" x:Name="tabControl"  TabStripPlacement="Top">
+		<TabItem Header="Аккаунты" FontSize="15" x:Name="tab2">
+			<Grid Background="Aquamarine" RowDefinitions="Auto, *">
+				<Grid Grid.Row="0" ColumnDefinitions="Auto, *" Background="Aqua">
+					<StackPanel Grid.Column="0" Height="40" Background="Brown" Orientation="Horizontal">
+						<Button x:Name="addClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+							<TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Добавить</TextBlock>
+						</Button>
+						<Button x:Name="deleteClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+							<TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Удалить</TextBlock>
+						</Button>
+						<Button x:Name="redactClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
+							<TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Редакт.</TextBlock>
+						</Button>
+						<Grid ColumnDefinitions="Auto, *">
+							<TextBox x:Name="clientFilterText" Grid.Column="0" Background="Bisque"  HorizontalAlignment="Stretch" MinHeight="20" Height="28" VerticalContentAlignment="Center" Width="150" Margin="15, 0, 0, 0" Watermark="Поиск"></TextBox>
+							<Button x:Name="clearClientsFilterButton" Grid.Column="1" Background="Bisque" Margin="-3, 0, 0, 0" Height="28">X</Button>
+						</Grid>
+					</StackPanel>
+				</Grid>
+				<Grid Grid.Row="1" Background="Brown">
+					<DataGrid x:Name="clientsDataGrid" AutoGenerateColumns="True" IsReadOnly="True" ItemsSource="{Binding ClientsView}" Background="Pink"></DataGrid>
+				</Grid>
+			</Grid>
+		</TabItem>
+		<TabItem Header="Клиенты" FontSize="15">
+			<Grid Background="Aquamarine" RowDefinitions="Auto, *">
+				<Grid Grid.Row="0" ColumnDefinitions="Auto, *" Background="Aqua">
+					<StackPanel Grid.Column="0" Height="40" Background="Brown" Orientation="Horizontal">
+						<Grid ColumnDefinitions="Auto, *">
+							<TextBox x:Name="accFilterText" Grid.Column="0" Background="Bisque"  HorizontalAlignment="Stretch" MinHeight="20" Height="28" VerticalContentAlignment="Center" Width="150" Margin="15, 0, 0, 0" Watermark="Поиск"></TextBox>
+							<Button x:Name="clearAccFilterButton" Grid.Column="1" Background="Bisque" Margin="-3, 0, 0, 0" Height="28">X</Button>
+						</Grid>
+					</StackPanel>										
+				</Grid>
+				<Grid Grid.Row="1" Background="Brown">
+					<DataGrid x:Name="accDataGrid" AutoGenerateColumns="True" IsReadOnly="True" ItemsSource="{Binding AccountsView}" Background="Pink"></DataGrid>
+				</Grid>
+			</Grid>
+		</TabItem>
+		<TabItem Header="Баланс" FontSize="15" x:Name="tab3">
+			<TabControl Background="Chocolate" TabStripPlacement="Right">
+				<TabItem Header="Баланс">
+					<Grid Background="Coral" ColumnDefinitions="*, *">
+						<TextBlock Grid.Column="0" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Right">Баланс:</TextBlock>
+						<TextBlock Grid.Column="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10, 0,0, 0" >5465464</TextBlock>
+					</Grid>
+				</TabItem>
+				<TabItem Header="Отчет">
+					<lvc:CartesianChart Background="Black" Series="{Binding Series}"></lvc:CartesianChart>
+				</TabItem>
+			</TabControl>
+		</TabItem>
         <TabItem Header="Операции" FontSize="15" x:Name="tab1">
             <Grid Background="Aquamarine" ColumnDefinitions="*, Auto">
                 <Grid Grid.Column="0" Background="Aqua">
                     <DataGrid Background="Azure"></DataGrid>
                 </Grid>
-                <Grid Grid.Column="1" Background="Brown" RowDefinitions="Auto, *" Width="95">
-                    <StackPanel Grid.Row="0" Height="110" Background="Aquamarine" Orientation="Vertical">
-                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
+                <Grid Grid.Column="1" Background="Brown" RowDefinitions="Auto, *" Width="120">
+                    <StackPanel Grid.Row="0" Background="Aquamarine" Orientation="Vertical">
+                        <Button x:Name="addFinButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
                             <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Добавить</TextBlock>
                         </Button>
-                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
+                        <Button x:Name="deleteFinButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
                             <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Удалить</TextBlock>
                         </Button>
-                        <Button HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
+                        <Button x:Name="redactFinButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 5, 5, 0">
                             <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Редакт.</TextBlock>
                         </Button>
+						<Grid Margin="2, 7, 0, 0" ColumnDefinitions="Auto, *">
+							<TextBox x:Name="finFilterText" Grid.Column="0" Background="Bisque"  HorizontalAlignment="Stretch" MinHeight="20" Height="28" VerticalContentAlignment="Center" Width="92" Watermark="Поиск"></TextBox>
+							<Button x:Name="clearFinFilterButton" Grid.Column="1" Margin="-3, 0, 0, 0" Background="Bisque" Height="28">X</Button>
+						</Grid>
                     </StackPanel>
                 </Grid>
             </Grid>
-        </TabItem>
-        <TabItem Header="Клиенты" FontSize="15" x:Name="tab2">
-            <Grid Background="Aquamarine" RowDefinitions="Auto, *">
-                <Grid Grid.Row="0" ColumnDefinitions="Auto, *" Background="Aqua">
-                    <StackPanel Grid.Column="0" Height="40" Background="Brown" Orientation="Horizontal">
-                        <Button x:Name="addClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
-                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Добавить</TextBlock>
-                        </Button>
-                        <Button x:Name="deleteClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
-                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Удалить</TextBlock>
-                        </Button>
-                        <Button x:Name="redactClientButton" HorizontalAlignment="Stretch" Height="30" Margin="5, 0, 5, 0">
-                            <TextBlock VerticalAlignment="Center" FontSize="12" HorizontalAlignment="Center" FontWeight="Black">Редакт.</TextBlock>
-                        </Button>
-                        <Grid ColumnDefinitions="Auto, *">
-                            <TextBox x:Name="clientFilterText" Grid.Column="0" Background="Bisque"  HorizontalAlignment="Stretch" MinHeight="20" Height="28" VerticalContentAlignment="Center" Width="150" Margin="15, 0, 0, 0" Watermark="Поиск"></TextBox>
-                            <Button x:Name="clearClientsFilterButton" Grid.Column="1" Background="Bisque" Margin="-3, 0, 0, 0" Height="28">X</Button>
-                        </Grid>
-                    </StackPanel>
-                    <Grid Grid.Column="1" Background="Yellow" ColumnDefinitions="*, *, *">
-                        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0, 4, 0, 0" Grid.Column="0">Должники</TextBlock>
-                        <ToggleButton VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0, 0, 0, 4" Grid.Column="0"></ToggleButton>
-                    </Grid>
-                </Grid>
-                <Grid Grid.Row="1" Background="Brown">
-                    <DataGrid x:Name="clientsDataGrid" Background="Azure"></DataGrid>
-                </Grid>
-            </Grid>
-        </TabItem>
-        <TabItem Header="Баланс" FontSize="15" x:Name="tab3">
-            <TabControl Background="Chocolate" TabStripPlacement="Right">
-                <TabItem Header="Баланс">
-                    <Grid Background="Coral" ColumnDefinitions="*, *">
-                        <TextBlock Grid.Column="0" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Right">Баланс:</TextBlock>
-                        <TextBlock Grid.Column="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10, 0,0, 0" >5465464</TextBlock>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Отчет">
-                   <lvc:CartesianChart Background="Black" Series="{Binding Series}"></lvc:CartesianChart>
-                </TabItem>
-            </TabControl>
         </TabItem>
         <TabItem Header="Налоги" FontSize="15" x:Name="tab4">
             <Grid Background="LightYellow" RowDefinitions="*, Auto">
