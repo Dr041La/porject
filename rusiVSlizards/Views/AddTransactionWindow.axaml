@@ -24,7 +24,7 @@
 						<Grid ColumnDefinitions="*, Auto">
 							<TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Клиент</TextBlock>
 							<Border Grid.Column="1" Width="200" CornerRadius="0, 25, 25, 0" Background="#C6BDAC">
-								<ComboBox x:Name="userbox" HorizontalAlignment="Stretch" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
+								<ComboBox ItemsSource="{Binding Clients}" x:Name="userbox" HorizontalAlignment="Stretch" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
 									<ComboBox.Styles>
 										<Style Selector="ComboBox:focus /template/ Border#Background">
 											<Setter Property="Background" Value="Transparent"></Setter>

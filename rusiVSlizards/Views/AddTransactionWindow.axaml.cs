@@ -13,6 +13,8 @@ namespace rusiVSlizards.Views
         {
             InitializeComponent();
 
+            transtypebox.ItemsSource = Enum.GetValues(typeof(UserRole));
+
             addButton.Click += delegate { AddTr(); };
             cancelButton.Click += delegate { Close(null); };
         }

@@ -17,6 +17,7 @@ public partial class MainWindow : Window
         
         SetClientsGrid();
         SetAccountsGrid();
+        SetTransactionGrid();
     }
     
     #region Clients
@@ -130,6 +131,7 @@ public partial class MainWindow : Window
             selectedClient = e.AddedItems[0] as Client;
         }
     }
+
     #endregion
 
     #region Accounts
@@ -203,4 +205,110 @@ public partial class MainWindow : Window
     }
     #endregion
 
+    #region Transactions
+
+    private Transaction selectedTransaction;
+
+    public void SetTransactionGrid()
+    {
+        addFinButton.Click += delegate { ShowAddTransactiontWindow(); };
+        deleteFinButton.Click += delegate { DeleteTransaction(); };
+        clearFinFilterButton.Click += delegate { finFilterText.Clear(); };
+
+        finDataGrid.SelectionChanged += TransactionDataGrid_OnSelectionChanged;
+        finDataGrid.AutoGeneratingColumn += SetTransactionGridCollumnName;
+
+        MainWindowViewModel.RefreshTransactions();
+
+        finFilterText.TextChanged += delegate { OnTransactionFilterChanged(); };
+
+        MainWindowViewModel.TransactionsView = new DataGridCollectionView(MainWindowViewModel.Clients);
+        MainWindowViewModel.TransactionsView.Filter = TransactionFilter;
+        MainWindowViewModel.TransactionsView.Refresh();
+    }
+
+    public void ShowAddTransactiontWindow()
+    {
+        AddTransactionWindow adw = new AddTransactionWindow();
+        adw.DataContext = this;
+        adw.Closed += delegate { RefreshClient(); };
+        adw.ShowDialog(this);
+    }
+
+    public void RefreshTransaction()
+    {
+        MainWindowViewModel.RefreshTransactions();
+    }
+
+
+    public async void DeleteTransaction()
+    {
+        int id = clientsDataGrid.SelectedIndex;
+        if (id != -1)
+        {
+            var mBox = MessageBoxManager.GetMessageBoxStandard("Удаление", "Удалить запись?", MsBox.Avalonia.Enums.ButtonEnum.YesNo);
+            var result = await mBox.ShowAsPopupAsync(this);
+
+            if (result == MsBox.Avalonia.Enums.ButtonResult.Yes)
+            {
+                Db.DeleteTransaction(selectedTransaction);
+                RefreshTransaction();
+            }
+            //Debug.WriteLine(clientsDataGrid.Columns.Count);
+        }
+    }
+
+    private void OnTransactionFilterChanged()
+    {
+        MainWindowViewModel.TransactionsView.Refresh();
+    }
+
+    public void SetTransactionGridCollumnName(object? sender, DataGridAutoGeneratingColumnEventArgs e)
+    {
+        switch (e.PropertyName)
+        {
+            case "User":
+                e.Column.Header = "Клиент";
+                break;
+            case "date":
+                e.Column.Header = "Дата операции";
+                break;
+            case "TransactType":
+                e.Column.Header = "Тип операции";
+                break;
+            case "Desc":
+                e.Column.Header = "Описание";
+                break;
+            case "amount":
+                e.Column.Header = "Сумма";
+                break;
+        }
+    }
+
+    public bool TransactionFilter(object o)
+    {
+        if (finFilterText.Text != null && finFilterText.Text != string.Empty)
+        {
+            Transaction tr = (Transaction)o;
+            if (tr.User.Contains(finFilterText.Text) || tr.date.ToString().Contains(finFilterText.Text) || tr.transactionType.ToString().Contains(finFilterText.Text) || tr.decs.Contains(finFilterText.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void TransactionDataGrid_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.AddedItems.Count > 0)
+        {
+            selectedTransaction = e.AddedItems[0] as Transaction;
+        }
+    }
+
+    #endregion
 }

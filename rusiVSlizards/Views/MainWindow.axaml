@@ -40,8 +40,8 @@
 			</Grid>
 		</TabItem>
 		<TabItem Header="Клиенты" FontSize="15">
-			<Grid Background="Aquamarine" RowDefinitions="Auto, *">
-				<Grid Grid.Row="0" ColumnDefinitions="Auto, *" Background="Aqua">
+			<Grid Background="Aquamarine" RowDefinitions="*, Auto">
+				<Grid Grid.Row="1" ColumnDefinitions="Auto, *" Background="Aqua">
 					<StackPanel Grid.Column="0" Height="40" Background="Brown" Orientation="Horizontal">
 						<Grid ColumnDefinitions="Auto, *">
 							<TextBox x:Name="accFilterText" Grid.Column="0" Background="Bisque"  HorizontalAlignment="Stretch" MinHeight="20" Height="28" VerticalContentAlignment="Center" Width="150" Margin="15, 0, 0, 0" Watermark="Поиск"></TextBox>
@@ -49,28 +49,15 @@
 						</Grid>
 					</StackPanel>										
 				</Grid>
-				<Grid Grid.Row="1" Background="Brown">
+				<Grid Grid.Row="0" Background="Brown">
 					<DataGrid x:Name="accDataGrid" AutoGenerateColumns="True" IsReadOnly="True" ItemsSource="{Binding AccountsView}" Background="Pink"></DataGrid>
 				</Grid>
 			</Grid>
 		</TabItem>
-		<TabItem Header="Баланс" FontSize="15" x:Name="tab3">
-			<TabControl Background="Chocolate" TabStripPlacement="Right">
-				<TabItem Header="Баланс">
-					<Grid Background="Coral" ColumnDefinitions="*, *">
-						<TextBlock Grid.Column="0" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Right">Баланс:</TextBlock>
-						<TextBlock Grid.Column="1" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10, 0,0, 0" >5465464</TextBlock>
-					</Grid>
-				</TabItem>
-				<TabItem Header="Отчет">
-					<lvc:CartesianChart Background="Black" Series="{Binding Series}"></lvc:CartesianChart>
-				</TabItem>
-			</TabControl>
-		</TabItem>
         <TabItem Header="Операции" FontSize="15" x:Name="tab1">
             <Grid Background="Aquamarine" ColumnDefinitions="*, Auto">
                 <Grid Grid.Column="0" Background="Aqua">
-                    <DataGrid Background="Azure"></DataGrid>
+					<DataGrid x:Name="finDataGrid" AutoGenerateColumns="True" IsReadOnly="True" ItemsSource="{Binding TransactionsView}" Background="Pink"></DataGrid>
                 </Grid>
                 <Grid Grid.Column="1" Background="Brown" RowDefinitions="Auto, *" Width="120">
                     <StackPanel Grid.Row="0" Background="Aquamarine" Orientation="Vertical">
