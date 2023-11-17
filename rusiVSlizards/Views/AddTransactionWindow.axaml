@@ -3,7 +3,106 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		xmlns:vm="using:rusiVSlizards.ViewModels"
+		xmlns:viewModels="clr-namespace:shkolakokokoli.ViewModels"
+		x:DataType="vm:MainWindowViewModel"
         x:Class="rusiVSlizards.Views.AddTransactionWindow"
         Title="AddTransactionWindow">
-  Welcome to Avalonia!
+
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<Grid Background="#7394A2" RowDefinitions="Auto, *">
+		<Grid Height="70" Grid.Row="0">
+			<TextBlock Foreground="White" FontWeight="ExtraBold" FontSize="20" VerticalAlignment="Bottom" Margin="100, 0, 0, 15">Операции</TextBlock>
+		</Grid>
+		<Grid Grid.Row="1">
+			<Border BorderThickness="0, 1, 0, 0" BorderBrush="LightGray">
+				<Grid Margin="0, 50, 0, 0" RowDefinitions="*, *, *, *, *">
+					<Border Margin="70, 0, 70, 0" Height="45" Grid.Row="0" Background="#D3D2C9" CornerRadius="25">
+						<Grid ColumnDefinitions="*, Auto">
+							<TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Клиент</TextBlock>
+							<Border Grid.Column="1" Width="200" CornerRadius="0, 25, 25, 0" Background="#C6BDAC">
+								<ComboBox x:Name="userbox" HorizontalAlignment="Stretch" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
+									<ComboBox.Styles>
+										<Style Selector="ComboBox:focus /template/ Border#Background">
+											<Setter Property="Background" Value="Transparent"></Setter>
+											<Setter Property="BorderThickness" Value="0"></Setter>
+										</Style>
+										<Style Selector="ComboBox:pointerover /template/ Border#Background">
+											<Setter Property="Background" Value="Transparent"/>
+										</Style>
+									</ComboBox.Styles>
+								</ComboBox>
+							</Border>
+						</Grid>
+					</Border>
+					<Border Margin="70, 0, 70, 0" Height="45" Grid.Row="1" Background="#D3D2C9" CornerRadius="25">
+						<Grid ColumnDefinitions="*, Auto">
+							<TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Операция</TextBlock>
+							<Border Grid.Column="1" Width="200" CornerRadius="0, 25, 25, 0" Background="#C6BDAC">
+								<ComboBox x:Name="transtypebox" HorizontalAlignment="Stretch" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
+									<ComboBox.Styles>
+										<Style Selector="ComboBox:focus /template/ Border#Background">
+											<Setter Property="Background" Value="Transparent"></Setter>
+											<Setter Property="BorderThickness" Value="0"></Setter>
+										</Style>
+										<Style Selector="ComboBox:pointerover /template/ Border#Background">
+											<Setter Property="Background" Value="Transparent"/>
+										</Style>
+									</ComboBox.Styles>
+								</ComboBox>
+							</Border>
+						</Grid>
+					</Border>
+					<Border Margin="70, 0, 70, 0" Height="45" Grid.Row="2" Background="#D3D2C9" CornerRadius="25">
+						<Grid ColumnDefinitions="*, Auto">
+							<TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Количество</TextBlock>
+							<Border Grid.Column="1" Width="200" CornerRadius="0, 25, 25, 0" Background="#C6BDAC">
+								<TextBox x:Name="amountText" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
+									<TextBox.Styles>
+										<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+											<Setter Property="Background" Value="Transparent"></Setter>
+											<Setter Property="BorderThickness" Value="0"></Setter>
+										</Style>
+										<Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+											<Setter Property="Background" Value="Transparent"/>
+										</Style>
+									</TextBox.Styles>
+								</TextBox>
+							</Border>
+						</Grid>
+					</Border>
+					<Border Margin="70, 0, 70, 0" Height="45" Grid.Row="3" Background="#D3D2C9" CornerRadius="25">
+						<Grid ColumnDefinitions="*, Auto">
+							<TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Описание</TextBlock>
+							<Border Grid.Column="1" Width="200" CornerRadius="0, 25, 25, 0" Background="#C6BDAC">
+								<TextBox x:Name="descText" BorderBrush="Transparent" BorderThickness="0" VerticalAlignment="Center" Background="Transparent">
+									<TextBox.Styles>
+										<Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+											<Setter Property="Background" Value="Transparent"></Setter>
+											<Setter Property="BorderThickness" Value="0"></Setter>
+										</Style>
+										<Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+											<Setter Property="Background" Value="Transparent"/>
+										</Style>
+									</TextBox.Styles>
+								</TextBox>
+							</Border>
+						</Grid>
+					</Border>
+					<Grid Grid.Row="4" ColumnDefinitions="*, *">
+						<Button x:Name="addButton" Grid.Column="0" HorizontalAlignment="Center" Background="#D3D2C9" CornerRadius="35" Width="150" Height="50">
+							<TextBlock x:Name="addText" Foreground="#56575D" FontWeight="ExtraBold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Добавить</TextBlock>
+						</Button>
+						<Button x:Name="cancelButton" Grid.Column="1" HorizontalAlignment="Center" Background="#D3D2C9" CornerRadius="35" Width="150" Height="50">
+							<TextBlock x:Name="cancelText" Foreground="#56575D" FontWeight="ExtraBold" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20">Отмена</TextBlock>
+						</Button>
+					</Grid>
+				</Grid>
+			</Border>
+		</Grid>
+	</Grid>
+	
 </Window>

@@ -12,7 +12,7 @@
                 </Grid>
                 <Grid Grid.Row="1">
                         <Border BorderThickness="0, 1, 0, 0" BorderBrush="LightGray">
-                                <Grid Margin="0, 50, 0, 0" Background="Coral" RowDefinitions="*, *, *, *">
+                                <Grid Margin="0, 50, 0, 0" RowDefinitions="*, *, *, *">
                                         <Border Margin="70, 0, 70, 0" Height="45" Grid.Row="0" Background="#D3D2C9" CornerRadius="25">
                                                 <Grid ColumnDefinitions="*, Auto">
                                                         <TextBlock Foreground="#56575D" FontSize="20" Margin="30, 0, 0, 0"  FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0">Имя</TextBlock>
