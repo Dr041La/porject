@@ -194,46 +194,60 @@ public static class Db
 
     #region Accounts
 
-    public static List<Account> GetAllTransactions()
+    public static List<Transaction> GetAllTransactions()
     {
         if (connection.State == ConnectionState.Closed)
         {
             connection.Open();
         }
         DataTable dt = new DataTable();
-        List<Account> accs = new List<Account>();
-        MySqlCommand command = new MySqlCommand("select * from Accounts", connection);
+        List<Transaction> trs = new List<Transaction>();
+        MySqlCommand command = new MySqlCommand("select * from FinancialTransactions", connection);
         MySqlDataAdapter reader = new MySqlDataAdapter(command);
         reader.Fill(dt);
         Debug.WriteLine(dt.Rows.Count);
         foreach (DataRow item in dt.Rows)
         {
-            Account acc = new Account();
-            acc.id = item.Field<int>("UserID");
-            acc.balance = item.Field<decimal>("Balance");
-            acc.user = GetClientAt(acc.id);
-            accs.Add(acc);
+            Transaction tr = new Transaction();
+            tr.id = item.Field<int>("TransactionID");
+            tr.amount = item.Field<decimal>("Amount");
+            tr.date = item.Field<DateTime>("Date");
+            tr.decs = item.Field<string>("Description");
+            tr.user = GetClientAt(item.Field<int>("UserID"));
+            tr.transactionType = Enum.Parse<TransactionType>(item.Field<string>("TransactionType"));
+            trs.Add(tr);
         }
         connection.Close();
 
-        return accs;
+        return trs;
     }
 
-    public static void AddAccount(Account acc)
+    public static void AddTransaction(Transaction tr)
     {
         if (connection.State == ConnectionState.Closed)
         {
             connection.Open();
         }
 
-        MySqlCommand command = new MySqlCommand("insert into accounts (UserID, Balance) VALUE (@ui, @bl)", connection);
-        command.Parameters.AddWithValue("@ui", acc.user.id);
-        command.Parameters.AddWithValue("@bl", acc.balance);
+        MySqlCommand command = new MySqlCommand("insert into financialtransactions (UserID, Date, TransactionType, Amount, Description) VALUE (@ui, @dt, @tt, @am, @ds)", connection);
+        command.Parameters.AddWithValue("@ui", tr.user.id);
+        command.Parameters.AddWithValue("@dt", tr.date);
+        command.Parameters.AddWithValue("@tt", tr.transactionType);
+        command.Parameters.AddWithValue("@am", tr.amount);
+        command.Parameters.AddWithValue("@ds", tr.decs + 1);
         command.ExecuteNonQuery();
+
+        if (tr.transactionType == TransactionType.income) 
+        {
+            MySqlCommand cm = new MySqlCommand("update accounts set Balance = Balance + @am where UserID = @ui");
+            cm.Parameters.AddWithValue("@ui", tr.user.id);
+            cm.Parameters.AddWithValue("@am", tr.amount);
+            cm.ExecuteNonQuery();
+        }
         connection.Close();
     }
 
-    public static void DeleteAccount(Account acc)
+    public static void DeleteTransaction(Transaction tr)
     {
         if (connection.State == ConnectionState.Closed)
         {
@@ -243,22 +257,8 @@ public static class Db
         MySqlCommand scommand = new MySqlCommand("set foreign_key_checks = 0", connection);
         scommand.ExecuteNonQuery();
 
-        MySqlCommand command = new MySqlCommand("DELETE FROM Accounts WHERE AccountID = @id", connection);
-        command.Parameters.AddWithValue("@id", acc.id);
-        command.ExecuteNonQuery();
-        connection.Close();
-    }
-
-    public static void ChangeAccount(Account acc)
-    {
-        if (connection.State == ConnectionState.Closed)
-        {
-            connection.Open();
-        }
-
-        MySqlCommand command = new MySqlCommand("update User set UserID = @ui, Balance = @bll", connection);
-        command.Parameters.AddWithValue("@ui", acc.user.id);
-        command.Parameters.AddWithValue("@bl", acc.balance);
+        MySqlCommand command = new MySqlCommand("delete from financialtransactions where TransactionID = @id", connection);
+        command.Parameters.AddWithValue("@id", tr.id);
         command.ExecuteNonQuery();
         connection.Close();
     }
