@@ -11,12 +11,12 @@ namespace rusiVSlizards.ViewModels;
 public static class Db
 {
     private static MySqlConnection connection;
-    
+
     static Db()
     {
         connection = new MySqlConnection("server = localhost;uid=user;pwd=qwerty228;database=world");
     }
-    
+
     #region Clients
 
     public static List<Client> GetAllClients()
@@ -133,7 +133,7 @@ public static class Db
         MySqlDataAdapter reader = new MySqlDataAdapter(command);
         reader.Fill(dt);
         Debug.WriteLine(dt.Rows.Count);
-        foreach (DataRow item in dt.Rows) 
+        foreach (DataRow item in dt.Rows)
         {
             Account acc = new Account();
             acc.id = item.Field<int>("UserID");
@@ -141,7 +141,80 @@ public static class Db
             acc.user = GetClientAt(acc.id);
             accs.Add(acc);
         }
-        connection.Close();      
+        connection.Close();
+
+        return accs;
+    }
+
+    public static void AddAccount(Account acc)
+    {
+        if (connection.State == ConnectionState.Closed)
+        {
+            connection.Open();
+        }
+
+        MySqlCommand command = new MySqlCommand("insert into accounts (UserID, Balance) VALUE (@ui, @bl)", connection);
+        command.Parameters.AddWithValue("@ui", acc.user.id);
+        command.Parameters.AddWithValue("@bl", acc.balance);
+        command.ExecuteNonQuery();
+        connection.Close();
+    }
+
+    public static void DeleteAccount(Account acc)
+    {
+        if (connection.State == ConnectionState.Closed)
+        {
+            connection.Open();
+        }
+
+        MySqlCommand scommand = new MySqlCommand("set foreign_key_checks = 0", connection);
+        scommand.ExecuteNonQuery();
+
+        MySqlCommand command = new MySqlCommand("DELETE FROM Accounts WHERE AccountID = @id", connection);
+        command.Parameters.AddWithValue("@id", acc.id);
+        command.ExecuteNonQuery();
+        connection.Close();
+    }
+
+    public static void ChangeAccount(Account acc)
+    {
+        if (connection.State == ConnectionState.Closed)
+        {
+            connection.Open();
+        }
+
+        MySqlCommand command = new MySqlCommand("update User set UserID = @ui, Balance = @bll", connection);
+        command.Parameters.AddWithValue("@ui", acc.user.id);
+        command.Parameters.AddWithValue("@bl", acc.balance);
+        command.ExecuteNonQuery();
+        connection.Close();
+    }
+
+    #endregion
+
+    #region Accounts
+
+    public static List<Account> GetAllTransactions()
+    {
+        if (connection.State == ConnectionState.Closed)
+        {
+            connection.Open();
+        }
+        DataTable dt = new DataTable();
+        List<Account> accs = new List<Account>();
+        MySqlCommand command = new MySqlCommand("select * from Accounts", connection);
+        MySqlDataAdapter reader = new MySqlDataAdapter(command);
+        reader.Fill(dt);
+        Debug.WriteLine(dt.Rows.Count);
+        foreach (DataRow item in dt.Rows)
+        {
+            Account acc = new Account();
+            acc.id = item.Field<int>("UserID");
+            acc.balance = item.Field<decimal>("Balance");
+            acc.user = GetClientAt(acc.id);
+            accs.Add(acc);
+        }
+        connection.Close();
 
         return accs;
     }

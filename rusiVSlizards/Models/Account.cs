@@ -23,4 +23,9 @@ public class Account
 
     public Account() 
     { }
+
+    public override string ToString()
+    {
+        return User;
+    }
 }

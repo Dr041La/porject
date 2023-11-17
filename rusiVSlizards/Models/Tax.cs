@@ -1,6 +1,6 @@
 using System;
 
-namespace rusiVSlizards.ViewModels;
+namespace rusiVSlizards.Models;
 
 public class Tax
 {
@@ -18,4 +18,7 @@ public class Tax
         this.taxAmount = taxAmount;
         this.date = date;
     }
+
+    public Tax()
+    { }
 }
